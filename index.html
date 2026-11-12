@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PureDrop Dairy – fresh milk at your door every morning</title>
+<meta name="description" content="PureDrop Dairy delivers fresh milk to households daily.">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header>
+ <div class="bar">
+  <a class="logo" href="#home" aria-label="PureDrop Dairy home">
+   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2C11 10 6 15 6 21a10 10 0 0 0 20 0c0-6-5-11-10-19z" fill="#1F6B45"/><path d="M12 21a4 4 0 0 0 4 4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+   PureDrop
+  </a>
+  <input type="checkbox" id="menu-toggle" aria-label="Toggle navigation menu">
+  <label class="burger" for="menu-toggle" aria-hidden="true">Menu</label>
+  <nav aria-label="Main">
+   <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#contact">Contact</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
+
+<main id="content">
+ <section class="view" id="home" aria-labelledby="home-title">
+  <div class="hero">
+   <div>
+    <h1 id="home-title">Fresh milk, at your door before breakfast.</h1>
+    <p>Bottled at dawn from local farms and delivered to your home every day.</p>
+    <a class="btn" href="#products">See our milk</a>
+   </div>
+   <img src="https://images.unsplash.com/photo-1609246280917-339404083c49?auto=format&fit=crop&fm=webp&q=70&w=1000&h=625" width="1000" height="625" fetchpriority="high" alt="A glass bottle of fresh milk on a wooden table">
+  </div>
+  <h2>Why households choose us</h2>
+  <ul class="facts">
+   <li><h3>Bottled the same day</h3><p>Milk leaves the farm in the morning and reaches you by 7 am.</p></li>
+   <li><h3>Daily or weekly</h3><p>Pick the days you want a delivery. Pause any time.</p></li>
+   <li><h3>No middlemen</h3><p>We work directly with farms, so you know where your milk comes from.</p></li>
+  </ul>
+ </section>
+
+ <section class="view page" id="products" aria-labelledby="products-title">
+  <h2 id="products-title">Our milk</h2>
+  <p>Prices are per litre bottle, delivered daily.</p>
+  <ul class="grid">
+   <li class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1639151082235-406d8eb262b9?auto=format&fit=crop&fm=webp&q=70&w=600&h=720" width="600" height="720" alt="A bottle of full cream milk next to a glass of milk">
+    <div><h3>Full cream</h3><p>Rich and creamy, straight from the farm.</p><p class="price">Rs. 220</p></div></li>
+   <li class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&fm=webp&q=70&w=600&h=720" width="600" height="720" alt="A glass jar of fresh toned milk">
+    <div><h3>Toned</h3><p>Balanced taste with less fat for everyday use.</p><p class="price">Rs. 200</p></div></li>
+   <li class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1596151163116-98a5033814c2?auto=format&fit=crop&fm=webp&q=70&w=600&h=720" width="600" height="720" alt="A glass of cold skimmed milk">
+    <div><h3>Skimmed</h3><p>Light and low in fat, with all the protein.</p><p class="price">Rs. 190</p></div></li>
+   <li class="card"><img loading="lazy" src="https://images.unsplash.com/photo-1609246280917-339404083c49?auto=format&fit=crop&fm=webp&q=70&w=600&h=720" width="600" height="720" alt="A glass bottle of organic milk on a wooden table">
+    <div><h3>Organic</h3><p>From grass-fed cows on certified organic farms.</p><p class="price">Rs. 280</p></div></li>
+  </ul>
+ </section>
+
+ <section class="view page" id="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">Start your delivery</h2>
+  <p>Tell us where you are and we will reply within one day.</p>
+  <form action="mailto:hello@puredrop.example" method="post" enctype="text/plain">
+   <div>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" required minlength="2" autocomplete="name" placeholder=" " aria-describedby="name-err">
+    <span class="err" id="name-err"><span class="e-empty">Enter your name.</span><span class="e-bad">Name must be at least 2 characters.</span></span>
+   </div>
+   <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required autocomplete="email" placeholder=" " aria-describedby="email-hint email-err">
+    <span class="hint" id="email-hint">We only use this to reply to you.</span>
+    <span class="err" id="email-err"><span class="e-empty">Enter your email address.</span><span class="e-bad">Enter a valid email, like name@example.com.</span></span>
+   </div>
+   <div>
+    <label for="message">Message</label>
+    <textarea id="message" name="message" required minlength="10" placeholder=" " aria-describedby="msg-err"></textarea>
+    <span class="err" id="msg-err"><span class="e-empty">Write a short message.</span><span class="e-bad">Message must be at least 10 characters.</span></span>
+   </div>
+   <div><button class="btn" type="submit">Send message</button></div>
+  </form>
+ </section>
+</main>
+
+<footer><p>&copy; 2026 PureDrop Dairy. Fresh milk, delivered daily. <a href="#contact">Contact us</a></p></footer>
+</body>
+</html>
