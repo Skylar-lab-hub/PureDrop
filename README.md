@@ -27,13 +27,7 @@ Open the folder in VS Code and run **Live Server** on `index.html`, or just doub
 ## Accessibility
 `<header>`, `<nav>`, `<main>`, `<footer>` landmarks; one `h1`, then `h2`/`h3`; skip link; labels on every field; errors linked with `aria-describedby`; visible focus; contrast of 4.5:1 or better.
 
-## Results (fill in after running Lighthouse)
-| | Before | After |
-|---|---|---|
-| Performance | | |
-| Accessibility | | |
-| Best practices | | |
-| SEO | | |
+
 
 ![Before](report/before.png) ![After](report/after.png)
 
