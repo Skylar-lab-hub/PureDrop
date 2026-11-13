@@ -1,8 +1,5 @@
-/* Fetches products.json and builds the product cards from the template in products.html */
-(function () {
-  'use strict';
-
-  async function renderProducts() {
+/* ES module, loaded on demand by router.js via import(). Fetches products.json and builds the product cards from the template in products.html */
+export async function renderProducts() {
     var grid = document.getElementById('product-grid');
     var status = document.getElementById('products-status');
     var tpl = document.getElementById('product-card-template');
@@ -42,6 +39,3 @@
       status.appendChild(document.createTextNode('.'));
     }
   }
-
-  window.renderProducts = renderProducts;
-})();

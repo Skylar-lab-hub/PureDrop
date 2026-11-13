@@ -31,7 +31,13 @@
         return;
       }
     }
-    if (window.renderProducts) await window.renderProducts();
+    try {
+      var mod = await import('./products.js'); // loaded only when Products is opened
+      await mod.renderProducts();
+    } catch (err) {
+      var s = view.querySelector('.status');
+      if (s) s.textContent = 'We could not load the products. Reload the page to try again.';
+    }
   }
 
   async function navigate(name, opts) {
