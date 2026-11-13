@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Full cream",
+    "description": "Rich and creamy, straight from the farm.",
+    "price": 220,
+    "image": "https://images.unsplash.com/photo-1639151082235-406d8eb262b9?auto=format&fit=crop&fm=webp&q=70&w=600&h=720",
+    "alt": "A bottle of full cream milk next to a glass of milk"
+  },
+  {
+    "id": 2,
+    "name": "Toned",
+    "description": "Balanced taste with less fat for everyday use.",
+    "price": 200,
+    "image": "https://images.unsplash.com/photo-1528750997573-59b89d56f4f7?auto=format&fit=crop&fm=webp&q=70&w=600&h=720",
+    "alt": "A glass jar of fresh toned milk"
+  },
+  {
+    "id": 3,
+    "name": "Skimmed",
+    "description": "Light and low in fat, with all the protein.",
+    "price": 190,
+    "image": "https://images.unsplash.com/photo-1596151163116-98a5033814c2?auto=format&fit=crop&fm=webp&q=70&w=600&h=720",
+    "alt": "A glass of cold skimmed milk"
+  },
+  {
+    "id": 4,
+    "name": "Organic",
+    "description": "From grass-fed cows on certified organic farms.",
+    "price": 280,
+    "image": "https://images.unsplash.com/photo-1609246280917-339404083c49?auto=format&fit=crop&fm=webp&q=70&w=600&h=720",
+    "alt": "A glass bottle of organic milk on a wooden table"
+  }
+]
