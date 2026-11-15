@@ -1,6 +1,8 @@
 /* Tiny hash router: link clicks + popstate, no page reloads.
    Routes use hash URLs (#home, #products, #contact) so deep links and
-   refresh keep working on GitHub Pages. */
+   refresh keep working on GitHub Pages.
+   Products and Contact are fetched as HTML fragments the first time they are
+   opened, and their JavaScript is loaded with import() only at that moment. */
 (function () {
   'use strict';
 
@@ -9,34 +11,48 @@
   var SUFFIX = ' – PureDrop Dairy';
   var routes = {
     home:     { title: 'PureDrop Dairy – fresh milk at your door every morning' },
-    products: { title: 'Our milk' + SUFFIX, onEnter: loadProducts },
-    contact:  { title: 'Start your delivery' + SUFFIX }
+    products: { title: 'Our milk' + SUFFIX,           onEnter: loadProducts },
+    contact:  { title: 'Start your delivery' + SUFFIX, onEnter: loadContact }
   };
 
   function isRoute(name) {
     return Object.prototype.hasOwnProperty.call(routes, name);
   }
 
-  // Products view: fetch the products.html template once, then render the cards.
-  async function loadProducts(view) {
-    if (!view.dataset.loaded) {
-      try {
-        var res = await fetch(view.dataset.src);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        view.innerHTML = await res.text();
-        view.dataset.loaded = 'true';
-      } catch (err) {
-        view.innerHTML = '<h2 id="products-title">Our milk</h2>' +
-          '<p class="status">We could not load this page. Check your connection and reload.</p>';
-        return;
-      }
-    }
+  // Fetch the view's HTML fragment (view.dataset.src) once. Returns true on success.
+  async function loadFragment(view, title) {
+    if (view.dataset.loaded) return true;
     try {
-      var mod = await import('./products.js'); // loaded only when Products is opened
+      var res = await fetch(view.dataset.src);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      view.innerHTML = await res.text();
+      view.dataset.loaded = 'true';
+      return true;
+    } catch (err) {
+      view.innerHTML = '<h1 id="' + view.id + '-title">' + title + '</h1>' +
+        '<p class="status">We could not load this page. Check your connection and reload.</p>';
+      return false;
+    }
+  }
+
+  async function loadProducts(view) {
+    if (!(await loadFragment(view, 'Our milk'))) return;
+    try {
+      var mod = await import('./products.js');
       await mod.renderProducts();
     } catch (err) {
       var s = view.querySelector('.status');
       if (s) s.textContent = 'We could not load the products. Reload the page to try again.';
+    }
+  }
+
+  async function loadContact(view) {
+    if (!(await loadFragment(view, 'Start your delivery'))) return;
+    try {
+      var mod = await import('./contact.js');
+      mod.initContact(view);
+    } catch (err) {
+      // The form still works without live validation, so no message is needed.
     }
   }
 
@@ -61,7 +77,7 @@
 
     if (!opts.initial) {
       window.scrollTo(0, 0);
-      var heading = view.querySelector('h1, h2');
+      var heading = view.querySelector('h1');
       if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
     }
   }

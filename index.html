@@ -6,6 +6,7 @@
 <title>PureDrop Dairy – fresh milk at your door every morning</title>
 <meta name="description" content="PureDrop Dairy delivers fresh milk to households daily.">
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js')</script>
 <script src="router.js" defer></script>
 </head>
 
@@ -21,7 +22,7 @@
   <label class="burger" for="menu-toggle" aria-hidden="true">Menu</label>
   <nav aria-label="Main">
    <ul>
-    <li><a href="#home">Home</a></li>
+    <li><a href="#home" aria-current="page">Home</a></li>
     <li><a href="#products">Products</a></li>
     <li><a href="#contact">Contact</a></li>
    </ul>
@@ -29,8 +30,8 @@
  </div>
 </header>
 
-<main id="content">
- <section class="view" id="home" aria-labelledby="home-title">
+<main id="content" tabindex="-1">
+ <section class="view active" id="home" aria-labelledby="home-title">
   <div class="hero">
    <div>
     <h1 id="home-title">Fresh milk, at your door before breakfast.</h1>
@@ -47,33 +48,16 @@
   </ul>
  </section>
 
+ <!-- Filled by router.js from products.html (+ products.js loaded with import()) -->
  <section class="view page" id="products" aria-labelledby="products-title" data-src="products.html">
-  <h2 id="products-title">Our milk</h2>
+  <h1 id="products-title">Our milk</h1>
   <noscript><p>Please turn on JavaScript to see our milk, or <a href="#contact">contact us</a> for the price list.</p></noscript>
  </section>
 
- <section class="view page" id="contact" aria-labelledby="contact-title">
-  <h2 id="contact-title">Start your delivery</h2>
-  <p>Tell us where you are and we will reply within one day.</p>
-  <form action="mailto:hello@puredrop.example" method="post" enctype="text/plain">
-   <div>
-    <label for="name">Name</label>
-    <input id="name" name="name" type="text" required minlength="2" autocomplete="name" placeholder=" " aria-describedby="name-err">
-    <span class="err" id="name-err"><span class="e-empty">Enter your name.</span><span class="e-bad">Name must be at least 2 characters.</span></span>
-   </div>
-   <div>
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" required autocomplete="email" placeholder=" " aria-describedby="email-hint email-err">
-    <span class="hint" id="email-hint">We only use this to reply to you.</span>
-    <span class="err" id="email-err"><span class="e-empty">Enter your email address.</span><span class="e-bad">Enter a valid email, like name@example.com.</span></span>
-   </div>
-   <div>
-    <label for="message">Message</label>
-    <textarea id="message" name="message" required minlength="10" placeholder=" " aria-describedby="msg-err"></textarea>
-    <span class="err" id="msg-err"><span class="e-empty">Write a short message.</span><span class="e-bad">Message must be at least 10 characters.</span></span>
-   </div>
-   <div><button class="btn" type="submit">Send message</button></div>
-  </form>
+ <!-- Filled by router.js from contact.html (+ contact.js loaded with import()) -->
+ <section class="view page" id="contact" aria-labelledby="contact-title" data-src="contact.html">
+  <h1 id="contact-title">Start your delivery</h1>
+  <noscript><p>Please turn on JavaScript to use the form, or email us at <a href="mailto:hello@puredrop.example">hello@puredrop.example</a>.</p></noscript>
  </section>
 </main>
 

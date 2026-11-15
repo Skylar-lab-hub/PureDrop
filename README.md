@@ -1,37 +1,23 @@
 # PureDrop Dairy – speed & accessibility rescue
 
-A fast, responsive, accessible single-page website for PureDrop Dairy, built with **only HTML and CSS** (no JavaScript, no build step).
+A fast, responsive, accessible single-page website for PureDrop Dairy, built with plain HTML, CSS and a little vanilla JavaScript (no build step, no frameworks).
 
 **Live site:** `https://<your-username>.github.io/puredrop-dairy/` (add after deploying)
 
 ## Files
-- `index.html` – all three views (Home, Products, Contact)
-- `style.css` – layout, responsive rules, form validation styles
-- Photos are loaded live from Unsplash (free to use under the Unsplash License)
-- `report/` – put `before.png` and `after.png` Lighthouse screenshots here
-
-## How it works without JavaScript
-| Brief asks for | Done here with |
-|---|---|
-| Router (no page reload) | CSS `:target` – nav links point to `#home`, `#products`, `#contact` and CSS shows the matching view |
-| Products from `products.json` | Product cards written directly in `index.html` (fetch needs JS) |
-| Hamburger menu at 768px | Hidden checkbox + label, shown under `max-width: 768px` |
-| Images | Live Unsplash photos, requested as compressed WebP via the URL (`fm=webp`) |
-| Lazy loading | Native `loading="lazy"` on product images |
-| Live form validation | HTML5 attributes (`required`, `type=email`, `minlength`) + CSS `:user-invalid` / `:user-valid` |
-| Code splitting (`import()`) | Not possible without JS. There is no JS to ship, so nothing to split |
-
-## Local setup
-Open the folder in VS Code and run **Live Server** on `index.html`, or just double-click `index.html`.
+- `index.html` – landmarks, Home view, and empty shells for Products and Contact
+- `style.css` – layout, responsive rules, form states, colour variables
+- `router.js` – hash router; fetches view fragments and loads view scripts with `import()`
+- `products.html` / `products.js` / `products.json` – Products view, cards and data
+- `contact.html` / `contact.js` – Contact view and live form validation
+- `report/` – `before.png`, `after.png` (Lighthouse) and `axe.png` (axe DevTools)
 
 ## Accessibility
-`<header>`, `<nav>`, `<main>`, `<footer>` landmarks; one `h1`, then `h2`/`h3`; skip link; labels on every field; errors linked with `aria-describedby`; visible focus; contrast of 4.5:1 or better.
+- Landmarks: `<header>`, `<nav aria-label="Main">`, `<main>`, `<footer>`; skip link to `<main>`.
+- Heading order: every view has one `h1`; Home continues `h2` → `h3`; product names are `h2` under the Products `h1`.
+- Colour contrast (WCAG AA): text ≥ 4.5:1 (ink/bg 12.9, accent/white 6.5, error/bg 6.9, muted/bg 7.0); borders and focus ring ≥ 3:1 (focus ring changed from gold 2.2:1 to blue 6.0:1).
+- Contact form: labels on every field, errors linked with `aria-describedby`, `aria-invalid`, messages announced with `aria-live`, focus moves to the first invalid field on submit.
+- Keyboard: skip link works, logical Tab order, visible focus, hamburger opens with Space, route changes move focus to the new `h1`.
 
-
-
-![Before](report/before.png) ![After](report/after.png)
-
-## Deploy to GitHub Pages
-1. Push to a public repo named `puredrop-dairy`.
-2. Settings → Pages → Source: *Deploy from a branch* → `main` / `/ (root)` → Save.
-3. Wait about a minute, then open the URL shown on that page.
+## Local setup
+`fetch()` and `import()` do not work from `file://`. Open the folder in VS Code and run **Live Server**, or run `python -m http.server` and visit `http://localhost:8000`.
